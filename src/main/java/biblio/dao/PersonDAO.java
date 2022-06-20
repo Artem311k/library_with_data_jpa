@@ -45,11 +45,6 @@ public class PersonDAO {
 
     public void update(int person_id, Person updatedPerson){
 
-//        Person oldPerson = jdbcTemplate.query("select * from person where person_id=?", new Object[]{person_id},
-//                new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
-//        if (oldPerson.getDate().equals(updatedPerson.getPerson_id())){
-//            correctDate = oldPerson.getDate();
-//        }
         jdbcTemplate.update("update person set name=?, date=? where person_id=?", updatedPerson.getName(),
                 updatedPerson.getDate(), updatedPerson.getPerson_id());
     }
