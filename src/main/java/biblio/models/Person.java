@@ -45,7 +45,7 @@ public class Person {
 
     public String getDate() {
         return date;
-    } // ИЗМЕНИТЬ ГЕТТЕР ФОРМАТ ДАТЫ ДЛЯ ОТОБРАЖЕНИЯ В EDIT  03.04.1991
+    } 
 
 
     public void setDate(String date) {
