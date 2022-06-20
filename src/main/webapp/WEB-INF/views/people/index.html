@@ -5,14 +5,11 @@
     <title>All people</title>
 </head>
 <body>
-
 <div th:each="person : ${people}">
     <a th:href="@{/people/{id}(id=${person.getPerson_id()})}"
        th:text="${person.getName()}">user</a>
-
 </div>
 <br/>
 <a href="/people/new">NEW PERSON</a>
-
 </body>
 </html>
