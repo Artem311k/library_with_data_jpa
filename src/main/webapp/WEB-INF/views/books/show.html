@@ -12,7 +12,6 @@
 <p th:text="${'Year - ' + book.getYear()}"></p>
 <br/>
 
-
 <div th:switch="${current_person.getPerson_id()}">
     <form th:case="'1'" th:method="PATCH" th:action="@{/books/{book_id}/set(book_id=${book.getBook_id()})}">
         <p>Book is set to no-one.</p>
