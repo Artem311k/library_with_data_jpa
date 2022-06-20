@@ -8,10 +8,8 @@
 <div th:each="book : ${books}">
 <a th:text="${book.getTitle() + ', by ' + book.getAuthor() + ', ' + book.getYear()} + ' year.'"
 th:href="@{/books/{book_id}(book_id=${book.getBook_id()})}"/>
-
 </div>
 <br/>
 <a href="/books/new">NEW BOOK</a>
-
 </body>
 </html>
