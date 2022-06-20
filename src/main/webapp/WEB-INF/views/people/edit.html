@@ -33,8 +33,6 @@
 </form>
 <br/>
 
-
-
 <form th:method="DELETE" th:action="@{/people/{person_id}(person_id=${person.getPerson_id()})}" th:object="${person}">
     <input type="submit" value="DELETE"/>
 
