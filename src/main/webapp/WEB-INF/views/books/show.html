@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+
+<p th:text="${'ID - ' + book.getBook_id()}"></p>
+<p th:text="${'Title - ' + book.getTitle()}"></p>
+<p th:text="${'Author - ' + book.getAuthor()}"></p>
+<p th:text="${'Year - ' + book.getYear()}"></p>
+<br/>
+
+
+<div th:switch="${current_person.getPerson_id()}">
+    <form th:case="'1'" th:method="PATCH" th:action="@{/books/{book_id}/set(book_id=${book.getBook_id()})}">
+        <p>Book is set to no-one.</p>
+        <label for="person">Set book to person:</label>
+        <select th:object="${person}" th:field="*{person_id}" id="person">
+            <option th:each="person : ${people}" th:value="${person.getPerson_id()}"
+                    th:text="${person.getName()}"></option>
+        </select>
+        <input type="submit" value="Set book to person"/>
+    </form>
+    <form th:case="*" th:method="PATCH" th:action="@{/books/{book_id}/clear(book_id=${book.getBook_id()})}" th:object="${book}">
+        <a>Book is now on </a>
+        <a th:text="${current_person.getName()}"
+        th:href="@{/people/{person_id}(person_id=${current_person.getPerson_id()})}"/>
+        <input type="submit" value="Clear book"/>
+    </form>
+
+</div>
+<br/>
+
+<a th:href="@{/books/{book_id}/edit(book_id=${book.getBook_id()})}">Edit book</a>
+<br/>
+<hr/>
+<a href="/books">ALL BOOKS</a>
+
+</body>
+</html>

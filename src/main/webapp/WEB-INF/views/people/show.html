@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Selected person</title>
+</head>
+<body>
+
+<p th:text="${'ID is' + person.getPerson_id()}"></p>
+<p th:text="${'Name is ' + person.getName()}"></p>
+<p th:text="${'Date of birth is ' + person.getDate()}"></p>
+<br/>
+
+
+<th:block th:if="${#lists.isEmpty(listbooks)}">
+    <a>No books owned</a>
+</th:block>
+
+<th:block th:if="${not #lists.isEmpty(listbooks)}">
+    <p>Owned books:</p>
+    <div th:each="book : ${listbooks}">
+        <a th:text="${book.getTitle() + ', by ' + book.getAuthor()}"
+           th:href="@{/books/{book_id}(book_id=${book.getBook_id()})}"></a>
+    </div>
+</th:block>
+
+
+
+<br/>
+<hr/>
+<a th:href="@{/people/{person_id}/edit(person_id=${person.getPerson_id()})}">Edit person</a>
+<br/>
+<a href="/people">ALL PEOPLE</a>
+</body>
+</html>

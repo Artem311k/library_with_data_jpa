@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/people/{person_id}(person_id=${person.getPerson_id()})}" th:object="${person}">
+    <label for="name">Name </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">errors</div>
+    <br/>
+    <label for="date">Date of birth </label>
+    <input type="date" th:field="*{date}" id="date" min="1900-01-01" max=""/>
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("date").setAttribute("max", today);
+    </script> <!-- сегодняшняя дата -->
+    <div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">errors</div>
+    <br/>
+    <input type="submit" value="Update"/>
+</form>
+<br/>
+
+
+
+<form th:method="DELETE" th:action="@{/people/{person_id}(person_id=${person.getPerson_id()})}" th:object="${person}">
+    <input type="submit" value="DELETE"/>
+
+</form>
+
+    <a href="/people">ALL PEOPLE</a>
+
+
+</body>
+</html>
