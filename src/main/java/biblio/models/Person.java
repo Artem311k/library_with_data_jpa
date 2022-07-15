@@ -1,10 +1,23 @@
 package biblio.models;
 
+import javax.persistence.*;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "person")
 public class Person {
+
+    @Id
+    @Column(name = "person_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int person_id;
 
     @NotEmpty(message = "Name must be not empty")
@@ -13,11 +26,16 @@ public class Person {
 
 
     @NotEmpty(message = "Date must be not empty")
-    private String date = "00.00.0000";
+//    @Temporal(TemporalType.DATE)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "date_of_birth")
+    private String date;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> bookList;
 
 
-    public Person(int person_id, String name, String date) {
-        this.person_id = person_id;
+    public Person(String name, String date) {
         this.name = name;
         this.date = date;
 
@@ -45,10 +63,17 @@ public class Person {
 
     public String getDate() {
         return date;
-    } 
-
+    }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 }

@@ -17,7 +17,7 @@
         <p>Book is set to no-one.</p>
         <label for="person">Set book to person:</label>
         <select th:object="${person}" th:field="*{person_id}" id="person">
-            <option th:each="person : ${people}" th:value="${person.getPerson_id()}"
+            <option th:each="person : ${peopleNotHavingBook}" th:value="${person.getPerson_id()}"
                     th:text="${person.getName()}"></option>
         </select>
         <input type="submit" value="Set book to person"/>
@@ -26,6 +26,8 @@
         <a>Book is now on </a>
         <a th:text="${current_person.getName()}"
         th:href="@{/people/{person_id}(person_id=${current_person.getPerson_id()})}"/>
+        <span th:text="'Taken ' + ${book.getFormatedTakenAtDate()}"
+        th:style="${book.isExpired()} ? 'color: red' : 'color: black'">book</span>
         <input type="submit" value="Clear book"/>
     </form>
 
