@@ -20,6 +20,8 @@
     <div th:each="book : ${listbooks}">
         <a th:text="${book.getTitle() + ', by ' + book.getAuthor()}"
            th:href="@{/books/{book_id}(book_id=${book.getBook_id()})}"></a>
+        <a th:text="'taken at ' + ${book.getFormatedTakenAtDate()}"
+        th:style="${book.isExpired()} ? 'color: red ' : 'color: black'"></a>
     </div>
 </th:block>
 

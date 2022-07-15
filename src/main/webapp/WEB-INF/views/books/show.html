@@ -26,8 +26,7 @@
         <a>Book is now on </a>
         <a th:text="${current_person.getName()}"
         th:href="@{/people/{person_id}(person_id=${current_person.getPerson_id()})}"/>
-        <span th:text="'Taken ' + ${book.getFormatedTakenAtDate()}"
-        th:style="${book.isExpired()} ? 'color: red' : 'color: black'">book</span>
+
         <input type="submit" value="Clear book"/>
     </form>
 
